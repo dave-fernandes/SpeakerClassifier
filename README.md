@@ -16,24 +16,46 @@ The data set is not publicly available.
 ## Model Fitting \& Validation
 We compared two tree-based classifiers: **random forests** (RF) and **gradient boosting machines** (GBM). The RF models outperformed the GBM and only the RF results are tabulated below.
 
-The RF model has a number of hyper-parameters, 6 of which were tuned using a random search strategy (1000 parameter configurations). Once hyper-parameters were chosen, the model was validated using a jackknife method. This method, described in the python notebook, allows us to use the small number of samples as efficiently as possible.
+The random forests model has a number of hyper-parameters, 6 of which were tuned using a random search strategy (1000 parameter configurations). Once hyper-parameters were chosen, the model was validated using a **jackknife** method. This method, described in the python notebook, allows us to use the small number of samples as efficiently as possible.
 
 ## Results
-
+The confusion matrix for the random forest classifier is as follows:
 #### Confusion Matrix
 ```
-[[0.75 0.18 0.05 0.02]
- [0.19 0.81 0.00 0.00]
- [0.10 0.00 0.68 0.22]
- [0.05 0.00 0.15 0.79]]
+ Real Group
+Older Female  0.74  0.19  0.05  0.02
+Young Female  0.19  0.80  0.00  0.00
+  Older Male  0.10  0.00  0.69  0.20
+  Young Male  0.05  0.00  0.15  0.80
+              -- Predicted Groups --
 ```
+In general, we see better classification on the gender axis than on the age group axis.
 
+We can determine the importance of each feature in the model using a SHAP plot.
 ![alt text](https://github.com/dave-fernandes/SpeakerClassifier/blob/master/images/shap_importance.png "SHAP plot of feature importance.")
 
-SHAP plot showing feature importance for the classifier.
-
 ## Discussion
+These results are not bad considering the simple measures that went into the analysis (no formants or unvoiced measures). This sort of classification problem usually uses Mel-frequency cepstral coefficients (MFCC) to obtain better performance. Human listeners also do a bit better than this simple approach. A re-analysis of results from [Goy, Pichora-Fuller, \& van Lieshout (2016)](https://www.ncbi.nlm.nih.gov/pubmed/27106312) show the following confusion matrices when recordings are classified by human listeners:
 
+Classification by young listeners:
+```
+ Real Group
+Older Female  0.76  0.23  0.01  0.00
+Young Female  0.02  0.98  0.00  0.00
+  Older Male  0.01  0.00  0.86  0.13
+  Young Male  0.01  0.01  0.09  0.89
+              -- Predicted Groups --
+```
+
+Classification by old listeners:
+```
+ Real Group
+Older Female  0.81  0.19  0.00  0.00
+Young Female  0.08  0.92  0.00  0.00
+  Older Male  0.03  0.00  0.90  0.07
+  Young Male  0.03  0.00  0.16  0.82
+              -- Predicted Groups --
+```
 ## Files
 * `SpeakerClassifier.ipynb` is a Jupyter notebook containing the classification model, training and evaluation code.
 
