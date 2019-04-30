@@ -14,9 +14,9 @@ Recorded speech samples were analyzed using the [Sonneta app](https://mintleafso
 The data set is not publicly available.
 
 ## Model Fitting \& Validation
-We compared two tree-based classifiers: **random forests** (RF) and **gradient boosting machines** (GBM). The RF models outperformed the GBM and only the RF results are tabulated below.
+I compared two tree-based classifiers: **random forests** (RF) and **gradient boosting machines** (GBM). The RF models outperformed the GBM and only the RF results are tabulated below.
 
-The random forests model has a number of hyper-parameters, 6 of which were tuned using a random search strategy (1000 parameter configurations). Once hyper-parameters were chosen, the model was validated using a **jackknife** method. This method, described in the python notebook, allows us to use the small number of samples as efficiently as possible.
+The random forests model has a number of hyper-parameters, 6 of which were tuned using a random search strategy (1000 parameter configurations). Once hyper-parameters were chosen, the model was validated using a **jackknife** method. This method, described in the python notebook, allowed me to use the small number of samples as efficiently as possible.
 
 ## Results
 The confusion matrix for the random forest classifier is as follows:
